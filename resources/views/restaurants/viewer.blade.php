@@ -162,16 +162,20 @@ nav > ul > li:hover {
      </style>   
   </head>
   <body>
+    <?php
+      $restaurants=App\Restaurant::all(); 
+      //$restaurant=App\Restaurant::find($id);
+    ?>
     <div class="details">
     <section>
       <img
         class="pic"
         src="/restaurantFinder/public/storage/cover_images/{{$restaurant->cover_image}}"
-      />
+         />
       <div class="content">
          
       <h3 class="name"><span>{{$restaurant->name}}</span></h3>
-        <span class="rating">4.1</span> <span class="stars"></span>
+        <span class="rating">{{$restaurant->rating_count}}</span> <span class="stars"></span>
         <div class="features">
           <i class="fa"><span>9AM - 9PM</span></i>
           <i class="fa fa-car"><span>Mpesa/cash</span></i>
@@ -180,14 +184,52 @@ nav > ul > li:hover {
         <p class="desc">
          {{$restaurant->description}}
         </p>
-        <a href="">add review</a>
-      </div>
-      
-    </section>
+        
+      <a href="{{ route('restaurants.review',$restaurant->id)}}">Add review</a>
+    </div>
+   
+    <?php
+    $reviews=App\Review::all();
 
-    {{-- <div class="menu" style="float:right" >
-      kckcakbskbks
-      </div> --}}
+    
+
+    $sortedReviews = array();
+
+    
+
+    $theID = $restaurant->id;
+
+    foreach($reviews as $review){
+        $restaurantID = $review->restaurant_id;
+      
+        if($restaurantID==$theID){
+          array_push($sortedReviews,$review);
+        }
+
+    }
+    //@endforeach
+
+    ?>
+  
+    <div>
+      <h1>Reviews</h1>
+  
+  @foreach($sortedReviews as $review)
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+    @for ($i=1; $i <= 5 ; $i++)
+      <span class="glyphicon glyphicon-star{{ ($i <= $review->rating) ? '' : '-empty'}}"></span>
+    @endfor
+
+    {{ $review->user ? $review->user->name : 'Anonymous'}}
+
+    <p>{{{$review->value}}}</p>
+    </div>
+  </div>
+@endforeach
+    <div>   
+    </section>
     <nav>
       <ul>
         <li class="active">Details</li>

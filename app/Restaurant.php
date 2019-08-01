@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Review;
 
 class Restaurant extends Model
 {
@@ -14,4 +15,14 @@ class Restaurant extends Model
 
    //Timestamps
    public $timestamps=true;
+
+   public function reviews(){
+      return $this->hasMany('App\Review');
+  }
+  protected $appends = ['rating_count'];
+
+public function getRatingCountAttribute()
+{
+    return $this->reviews->avg('rating');
+}
 }

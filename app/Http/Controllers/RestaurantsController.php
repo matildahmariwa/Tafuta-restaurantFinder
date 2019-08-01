@@ -17,11 +17,11 @@ class RestaurantsController extends Controller
     public function index()
     {
         
-        $restaurants=App\Restaurant::all();   
-        // return view('restaurants.index',compact('restaurants'));
-        return('restaurants.index')->with('restaurants' ,$restaurants);
-        // return view ('restaurants.index', compact( 'restaurants'));
-        // return View::make('restaurants.index', array('restaurants' => $restaurants));
+        // $restaurants=App\Restaurant::all();   
+        // // return view('restaurants.index',compact('restaurants'));
+        // return('restaurants.index')->with('restaurants' ,$restaurants);
+        // // return view ('restaurants.index', compact( 'restaurants'));
+        // // return View::make('restaurants.index', array('restaurants' => $restaurants));
             
     }
 
@@ -56,8 +56,22 @@ class RestaurantsController extends Controller
         //Upload image
         $path=$request->file('cover_image')->storeAs('public/cover_images',$fileNameToStore);
     }
+    {
+     //handle file upload
+    if($request->hasFile('menu_image')){
+        // Get filename with the extension
+        $menunameWithExt=$request->file('menu_image')->getClientOriginalName();
+        //Get just filename
+        $menuname=pathinfo($menunameWithExt,PATHINFO_FILENAME);
+        //Get just ext
+        $extension=$request->file('menu_image')->getClientOriginalExtension();
+        //Filename to store
+        $menuNameToStore=$filename.'_'.time().'_'.$extension;
+        //Upload image
+        $path=$request->file('menu_image')->storeAs('public/cover_images',$menuNameToStore);   
+    }
     else 
-    $fileNameToStore='noImage.jpg';
+    $menuNameToStore='noImage.jpg';
 
     {
         //Create Restaurant
@@ -69,11 +83,14 @@ class RestaurantsController extends Controller
         $restaurant->payment=$request->input('payment');
         $restaurant->description=$request->input('description');
         $restaurant->cover_image=$fileNameToStore;
+        $restaurant->menu_image=$menuNameToStore;
         $restaurant->save();
  
         return redirect("profile/");   
-     }
+     
     }
+}
+}
     
 
     /**
@@ -87,6 +104,7 @@ class RestaurantsController extends Controller
         $restaurant=Restaurant::find($id); 
         return view('restaurants.viewer')->with('restaurant',$restaurant);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -121,4 +139,5 @@ class RestaurantsController extends Controller
     {
         //
     }
+    
 }

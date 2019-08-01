@@ -4,7 +4,7 @@
 <hr>
 <div class="container">
 <?php
-$restaurants=App\Restaurant::all(); 
+$restaurant=Restaurant::find($id); 
 ?> 
 @if(count( $restaurants)>0)
 <div class="well">

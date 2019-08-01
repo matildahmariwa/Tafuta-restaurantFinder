@@ -24,15 +24,18 @@ Auth::routes();
 Route::get('/create', function () {
     return view('restaurants.create');
 });
-Route::get('/viewer', function () {
-    return view('restaurants.viewer');
-});
+// Route::get('/viewer', function () {
+//     return view('restaurants.viewer');
+// });
 Route::get('/index',function(){
     return view('restaurants.index');
 });
-Route::get('/review',function(){
-    return view('layouts.review');
-});
+Route::get('/restaurants/{restaurant_id}/review', ['as' => 'restaurants.review', 'uses' => 'ReviewsController@show']);
+
 Route::resource('restaurants','RestaurantsController');
+Route::resource('reviews','ReviewsController');
 Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::get('/map',function(){
+    return view('map');
+});
 
