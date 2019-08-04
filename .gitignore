@@ -6,6 +6,7 @@
 node_modules/
 /.vscode
 /.idea
+/__MACOSX
 npm-debug.log
 yarn-error.log
 
