@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRestaurantsTable extends Migration
+class CreateNewRestaurantsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,15 +15,16 @@ class CreateRestaurantsTable extends Migration
     {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
             $table->string('name');
-            $table->text('menu');
-            $table->string('hours');
-            $table->string('contact');
-            $table->string('payment');
-            
-        
-         
+            $table->text('physical_address');
+            $table->time('opening_time');
+            $table->time('closing_time');
+            $table->string("days_of_operation");
+            $table->string('website')->nullable(true);
+            $table->string('email')->nullable(true);
+            $table->string('phone')->nullable(true);
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
