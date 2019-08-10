@@ -2,27 +2,45 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\PasswordRequest;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * Show the form for editing the profile.
      *
-     * @return void
+     * @return \Illuminate\View\View
      */
-    public function __construct()
+    public function edit()
     {
-        $this->middleware('auth');
+        return view('profile.edit');
     }
 
     /**
-     * Show the application dashboard.
+     * Update the profile
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param  \App\Http\Requests\ProfileRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function index()
+    public function update(ProfileRequest $request)
     {
-        return view('profile');
+        auth()->user()->update($request->all());
+
+        return back()->withStatus(__('Profile successfully updated.'));
+    }
+
+    /**
+     * Change the password
+     *
+     * @param  \App\Http\Requests\PasswordRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function password(PasswordRequest $request)
+    {
+        auth()->user()->update(['password' => Hash::make($request->get('password'))]);
+
+        return back()->withPasswordStatus(__('Password successfully updated.'));
     }
 }
