@@ -82,7 +82,7 @@ class RestaurantsController extends Controller
         // $restaurant->menu_image=$menuNameToStore;
         $restaurant->save();
  
-        return redirect("profile/");   
+        return redirect("restaurants/");   
      
     }
 }
