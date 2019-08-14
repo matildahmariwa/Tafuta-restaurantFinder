@@ -14,15 +14,9 @@ class RestaurantsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Restaurant $model)
     {
-        
-        // $restaurants=App\Restaurant::all();   
-        // // return view('restaurants.index',compact('restaurants'));
-        // return('restaurants.index')->with('restaurants' ,$restaurants);
-        // // return view ('restaurants.index', compact( 'restaurants'));
-        // // return View::make('restaurants.index', array('restaurants' => $restaurants));
-            
+        return view('restaurants.index', ['restaurants' => $model->paginate(15)]);
     }
 
     /**
@@ -32,7 +26,7 @@ class RestaurantsController extends Controller
      */
     public function create()
     {
-        //
+        return view('restaurants.create');
     }
 
     /**
@@ -43,54 +37,56 @@ class RestaurantsController extends Controller
      */
     public function store(Request $request)
 { 
-    //handle file upload
-    if($request->hasFile('cover_image')){
-        // Get filename with the extension
-        $filenameWithExt=$request->file('cover_image')->getClientOriginalName();
-        //Get just filename
-        $filename=pathinfo($filenameWithExt,PATHINFO_FILENAME);
-        //Get just ext
-        $extension=$request->file('cover_image')->getClientOriginalExtension();
-        //Filename to store
-        $fileNameToStore=$filename.'_'.time().'_'.$extension;
-        //Upload image
-        $path=$request->file('cover_image')->storeAs('public/cover_images',$fileNameToStore);
-    }
-    {
-     //handle file upload
-    if($request->hasFile('menu_image')){
-        // Get filename with the extension
-        $menunameWithExt=$request->file('menu_image')->getClientOriginalName();
-        //Get just filename
-        $menuname=pathinfo($menunameWithExt,PATHINFO_FILENAME);
-        //Get just ext
-        $extension=$request->file('menu_image')->getClientOriginalExtension();
-        //Filename to store
-        $menuNameToStore=$filename.'_'.time().'_'.$extension;
-        //Upload image
-        $path=$request->file('menu_image')->storeAs('public/cover_images',$menuNameToStore);   
-    }
-    else 
-    $menuNameToStore='noImage.jpg';
+    // //handle file upload
+    // if($request->hasFile('cover_image')){
+    //     // Get filename with the extension
+    //     $filenameWithExt=$request->file('cover_image')->getClientOriginalName();
+    //     //Get just filename
+    //     $filename=pathinfo($filenameWithExt,PATHINFO_FILENAME);
+    //     //Get just ext
+    //     $extension=$request->file('cover_image')->getClientOriginalExtension();
+    //     //Filename to store
+    //     $fileNameToStore=$filename.'_'.time().'_'.$extension;
+    //     //Upload image
+    //     $path=$request->file('cover_image')->storeAs('public/cover_images',$fileNameToStore);
+    // }
+    // {
+    //  //handle file upload
+    // if($request->hasFile('menu_image')){
+    //     // Get filename with the extension
+    //     $menunameWithExt=$request->file('menu_image')->getClientOriginalName();
+    //     //Get just filename
+    //     $menuname=pathinfo($menunameWithExt,PATHINFO_FILENAME);
+    //     //Get just ext
+    //     $extension=$request->file('menu_image')->getClientOriginalExtension();
+    //     //Filename to store
+    //     $menuNameToStore=$filename.'_'.time().'_'.$extension;
+    //     //Upload image
+    //     $path=$request->file('menu_image')->storeAs('public/cover_images',$menuNameToStore);   
+    // }
+    // else 
+    // $menuNameToStore='noImage.jpg';
 
     {
         //Create Restaurant
         $restaurant=new Restaurant;
         $restaurant->name= $request->input('name');
-        $restaurant->menu=$request->input('menu');
-        $restaurant->hours=$request->input('hours');
-        $restaurant->contact=$request->input('contact');
-        $restaurant->payment=$request->input('payment');
-        $restaurant->description=$request->input('description');
-        $restaurant->cover_image=$fileNameToStore;
-        $restaurant->menu_image=$menuNameToStore;
+        $restaurant->opening_time=$request->input('opening_time');
+        $restaurant->physical_address=$request->input('physical_address');
+        $restaurant->closing_time=$request->input('closing_time');
+        $restaurant->days_of_operation=$request->input('days_of_operation');
+        $restaurant->website=$request->input('website');
+        $restaurant->email=$request->input('email');
+        $restaurant->phone=$request->input('phone');
+        // $restaurant->cover_image=$fileNameToStore;
+        // $restaurant->menu_image=$menuNameToStore;
         $restaurant->save();
  
-        return redirect("profile/");   
+        return redirect("restaurants/");   
      
     }
 }
-}
+
     
 
     /**
@@ -114,7 +110,10 @@ class RestaurantsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $restaurant=Restaurant::find($id); 
+        return view('restaurants.edit')->with('restaurant',$restaurant);
+
+        
     }
 
     /**
@@ -126,7 +125,19 @@ class RestaurantsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $restaurant=Restaurant::find($id); 
+        $restaurant->name= $request->input('name');
+        $restaurant->opening_time=$request->input('opening_time');
+        $restaurant->physical_address=$request->input('physical_address');
+        $restaurant->closing_time=$request->input('closing_time');
+        $restaurant->days_of_operation=$request->input('days_of_operation');
+        $restaurant->website=$request->input('website');
+        $restaurant->email=$request->input('email');
+        $restaurant->phone=$request->input('phone');
+        // $restaurant->cover_image=$fileNameToStore;
+        // $restaurant->menu_image=$menuNameToStore;
+        $restaurant->save();
+       return redirect ('/restaurants')->withStatus(__('Restaurant successfully updated.'));
     }
 
     /**
@@ -137,7 +148,10 @@ class RestaurantsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $restaurant=Restaurant::find($id); 
+        $restaurant->delete();
+
+        return redirect ('/restaurants');
     }
     
 }
