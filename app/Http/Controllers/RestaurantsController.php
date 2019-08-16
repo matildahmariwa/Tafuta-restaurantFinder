@@ -37,35 +37,19 @@ class RestaurantsController extends Controller
      */
     public function store(Request $request)
 { 
-    // //handle file upload
-    // if($request->hasFile('cover_image')){
-    //     // Get filename with the extension
-    //     $filenameWithExt=$request->file('cover_image')->getClientOriginalName();
-    //     //Get just filename
-    //     $filename=pathinfo($filenameWithExt,PATHINFO_FILENAME);
-    //     //Get just ext
-    //     $extension=$request->file('cover_image')->getClientOriginalExtension();
-    //     //Filename to store
-    //     $fileNameToStore=$filename.'_'.time().'_'.$extension;
-    //     //Upload image
-    //     $path=$request->file('cover_image')->storeAs('public/cover_images',$fileNameToStore);
-    // }
-    // {
-    //  //handle file upload
-    // if($request->hasFile('menu_image')){
-    //     // Get filename with the extension
-    //     $menunameWithExt=$request->file('menu_image')->getClientOriginalName();
-    //     //Get just filename
-    //     $menuname=pathinfo($menunameWithExt,PATHINFO_FILENAME);
-    //     //Get just ext
-    //     $extension=$request->file('menu_image')->getClientOriginalExtension();
-    //     //Filename to store
-    //     $menuNameToStore=$filename.'_'.time().'_'.$extension;
-    //     //Upload image
-    //     $path=$request->file('menu_image')->storeAs('public/cover_images',$menuNameToStore);   
-    // }
-    // else 
-    // $menuNameToStore='noImage.jpg';
+    
+   //handle file upload
+   if($request->hasFile('cover_image')){
+    // Get filename with the extension
+    $filenameWithExt=$request->file('cover_image')->getClientOriginalName();
+    //Get just filename
+    $filename=pathinfo($filenameWithExt,PATHINFO_FILENAME);
+    //Get just ext
+    $extension=$request->file('cover_image')->getClientOriginalExtension();
+    //Filename to store
+    $fileNameToStore=$filename.'_'.time().'_'.$extension;
+    //Upload image
+    $path=$request->file('cover_image')->storeAs('public/cover_images',$fileNameToStore);
 
     {
         //Create Restaurant
@@ -78,13 +62,15 @@ class RestaurantsController extends Controller
         $restaurant->website=$request->input('website');
         $restaurant->email=$request->input('email');
         $restaurant->phone=$request->input('phone');
-        // $restaurant->cover_image=$fileNameToStore;
+        $restaurant->cover_image=$fileNameToStore;
         // $restaurant->menu_image=$menuNameToStore;
         $restaurant->save();
  
-        return redirect("restaurants/");   
+        // return redirect("/profile");
+        return redirect()->route('restaurants.index')->withStatus(__('Restaurant successfully created.'));
      
     }
+}
 }
 
     

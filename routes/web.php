@@ -24,6 +24,9 @@ Auth::routes();
 Route::get('/create', function () {
     return view('restaurants.create');
 });
+Route::get('/landing', function () {
+    return view('restaurants.landing');
+});
 // Route::get('/viewer', function () {
 //     return view('restaurants.viewer');
 // });

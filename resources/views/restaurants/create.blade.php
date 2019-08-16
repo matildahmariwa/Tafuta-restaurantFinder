@@ -38,17 +38,24 @@
         </div>
         <div class="form-group">
                         {{Form::label('phone','Phone')}}
-                        {{Form::text('phone',null,['class'=>'form-control','id'=>'description','placeholder'=>'Insert here'])}}
+                        {{Form::text('phone',null,['class'=>'form-control','id'=>'phone','placeholder'=>'Insert here'])}}
                 </div>
 
                 <div class="form-group">
                         {{Form::label('pysical_address','Physical address')}}
                         {{Form::textarea('physical_address','',['class'=>'form-control','placeholder'=>'Insert here'])}}
                         </div>
-        
-        {{-- <div class="form-group">
+                        <div class="form-group">
+                                {{Form::label('lat','Latitude')}}
+                                {{Form::number('lat',null,['class'=>'form-control','id'=>'lat','placeholder'=>'Insert here'])}}
+                        </div>
+                        <div class="form-group">
+                                {{Form::label('lon','Longitude')}}
+                                {{Form::number('lon',null,['class'=>'form-control','id'=>'lon','placeholder'=>'Insert here'])}}
+                        </div>
+        <div class="form-group">
                         {{Form::file('cover_image')}}
-        </div> --}}
+        </div>
         {{-- {{Form::hidden('_method','POST')}} --}}
         {{Form::submit('submit',['class'=>'btn btn-primary','type'=>'submit','id'=>'submit'])}}
         

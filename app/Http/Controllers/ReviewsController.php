@@ -50,8 +50,6 @@ class ReviewsController extends Controller
         $review->user_id=auth()->user()->id;
         $review->restaurant_id=$request->get('restaurant_id');
         $review->value=$request->input('value');
-      
-
         $review->rating=$request->input('rating'); 
         $review->save();
        

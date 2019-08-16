@@ -170,7 +170,7 @@ nav > ul > li:hover {
     <section>
       <img
         class="pic"
-        src="/restaurantFinder/public/storage/cover_images/{{$restaurant->cover_image}}"
+        src="/Tafuta_restaurant/storage/app/public/cover_images/{{$restaurant->cover_image}}"
          />
       <div class="content">
          
