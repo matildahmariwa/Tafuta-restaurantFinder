@@ -34,6 +34,7 @@ Route::get('/restaurants/{restaurant_id}/review', ['as' => 'restaurants.review',
 Route::get('/restaurants/profile/{restaurant_id}/', 'RestaurantsController@profile');
 
 Route::resource('restaurants','RestaurantsController');
+Route::resource('foodcategory','FoodCategoryController');
 Route::resource('reviews','ReviewsController');
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/map',function(){
@@ -50,4 +51,3 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
-
