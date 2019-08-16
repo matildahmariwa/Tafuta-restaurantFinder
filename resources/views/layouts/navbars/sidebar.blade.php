@@ -107,7 +107,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{route("foodcategory.index")}}">
                         <i class="ni ni-bullet-list-67 text-green"></i> {{ __('Food Categories') }}
                     </a>
                 </li>
