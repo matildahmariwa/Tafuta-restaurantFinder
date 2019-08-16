@@ -45,9 +45,10 @@
             {{Form::textarea('physical_address','',['class'=>'form-control','placeholder'=>'Insert here'])}}
         </div>
 
-        {{-- <div class="form-group">
-                        {{Form::file('cover_image')}}
-        </div> --}}
+        <div class="form-group">
+            {{Form::file('cover_image')}}
+        </div>
+
         {{-- {{Form::hidden('_method','POST')}} --}}
         {{Form::submit('submit',['class'=>'btn btn-primary','type'=>'submit','id'=>'submit'])}}
 
