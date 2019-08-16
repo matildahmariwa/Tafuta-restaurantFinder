@@ -34,4 +34,12 @@ class ImageUploadController extends Controller
         return $filename;
     }
 
+    public static function getFilePath($filename)
+    {
+        $path = storage_path() . '/uploads/' . $filename;
+        if (file_exists($path)) {
+            return url('/uploads/' . $filename);
+        }
+        return "#";
+    }
 }
