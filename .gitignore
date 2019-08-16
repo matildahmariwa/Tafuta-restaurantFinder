@@ -4,6 +4,7 @@
 ### Laravel ###
 /vendor/
 node_modules/
+/storage/uploads/
 /.vscode
 /.idea
 /__MACOSX
