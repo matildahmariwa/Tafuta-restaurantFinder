@@ -31,6 +31,7 @@ Route::get('/index',function(){
     return view('restaurants.index');
 });
 Route::get('/restaurants/{restaurant_id}/review', ['as' => 'restaurants.review', 'uses' => 'ReviewsController@show']);
+Route::get('/restaurants/profile/{restaurant_id}/', 'RestaurantsController@profile');
 
 Route::resource('restaurants','RestaurantsController');
 Route::resource('reviews','ReviewsController');

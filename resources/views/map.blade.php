@@ -11,28 +11,51 @@
         width:100%;
     }
     </style>
-   
+
 </head>
 <body>
-        <h1>My google map</h1>
-        <div id="map"></div>
+<div id="map"></div>
         <script>
-                function initMap(){
-                  var options={
-                      zoom:12,
-                      center:{lat:-1.1026,lng:37.0132}
-                      
-                  }
-                  var map = new  google.maps.Map(document.getElementById('map'),options); 
-                  var marker=new google.maps.Marker({
-                      position:{lat:-1.0969,lng:37.0154},
-                      icon:
-                      map:map
-                  })
-                }
-            </script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFDwP1v9neh0k3aiiZ1yvoAFMIk7Id12c&callback=initMap"
+            var geocoder;
+            var map;
+            var address = "Nairobi";
+
+            function initMap() {
+                geocoder = new google.maps.Geocoder();
+
+                var uluru = { lat: -25.363, lng: 131.044 };
+                map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 4,
+                    center: uluru
+                });
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    map: map
+                });
+                codeAddress(address);
+
+            }
+
+            function codeAddress(address) {
+
+                geocoder.geocode({ 'address': address }, function (results, status) {
+                    console.log(results);
+                    var latLng = {lat: results[0].geometry.location.lat (), lng: results[0].geometry.location.lng ()};
+                    console.log (latLng);
+                    if (status == 'OK') {
+                        var marker = new google.maps.Marker({
+                            position: latLng,
+                            map: map
+                        });
+                        console.log (map);
+                    } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                });
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFDwP1v9neh0k3aiiZ1yvoAFMIk7Id12c&callback=initMap"
             async defer>
-            </script>   
+        </script>
 </body>
 </html>

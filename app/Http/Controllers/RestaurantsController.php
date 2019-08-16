@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Restaurant;
@@ -36,7 +37,7 @@ class RestaurantsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-{ 
+{
     // //handle file upload
     // if($request->hasFile('cover_image')){
     //     // Get filename with the extension
@@ -62,9 +63,9 @@ class RestaurantsController extends Controller
     //     //Filename to store
     //     $menuNameToStore=$filename.'_'.time().'_'.$extension;
     //     //Upload image
-    //     $path=$request->file('menu_image')->storeAs('public/cover_images',$menuNameToStore);   
+    //     $path=$request->file('menu_image')->storeAs('public/cover_images',$menuNameToStore);
     // }
-    // else 
+    // else
     // $menuNameToStore='noImage.jpg';
 
     {
@@ -81,13 +82,13 @@ class RestaurantsController extends Controller
         // $restaurant->cover_image=$fileNameToStore;
         // $restaurant->menu_image=$menuNameToStore;
         $restaurant->save();
- 
-        return redirect("restaurants/");   
-     
+
+        return redirect("restaurants/");
+
     }
 }
 
-    
+
 
     /**
      * Display the specified resource.
@@ -95,9 +96,9 @@ class RestaurantsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) 
+    public function show($id)
     {
-        $restaurant=Restaurant::find($id); 
+        $restaurant=Restaurant::find($id);
         return view('restaurants.viewer')->with('restaurant',$restaurant);
     }
 
@@ -110,10 +111,10 @@ class RestaurantsController extends Controller
      */
     public function edit($id)
     {
-        $restaurant=Restaurant::find($id); 
+        $restaurant=Restaurant::find($id);
         return view('restaurants.edit')->with('restaurant',$restaurant);
 
-        
+
     }
 
     /**
@@ -125,7 +126,7 @@ class RestaurantsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $restaurant=Restaurant::find($id); 
+        $restaurant=Restaurant::find($id);
         $restaurant->name= $request->input('name');
         $restaurant->opening_time=$request->input('opening_time');
         $restaurant->physical_address=$request->input('physical_address');
@@ -148,10 +149,16 @@ class RestaurantsController extends Controller
      */
     public function destroy($id)
     {
-        $restaurant=Restaurant::find($id); 
+        $restaurant=Restaurant::find($id);
         $restaurant->delete();
 
         return redirect ('/restaurants');
     }
-    
+
+    public function profile($id)
+    {
+        $restaurant=Restaurant::find($id);
+        return view('restaurants.profile')->with('restaurant',$restaurant);
+    }
+
 }

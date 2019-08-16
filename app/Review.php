@@ -11,7 +11,7 @@ class Review extends Model
 {
      //Table name
    protected $table='reviews';
-    
+
    //Primary key
    public $primarykey='id';
 
@@ -19,7 +19,7 @@ class Review extends Model
    public $timestamps=true;
 
    protected $fillable = [
-      'user_id', 'value', 'restaurant_id',
+      'user_id', 'title', 'restaurant_id', 'rating', 'review', 'visit_type'
    ];
 
 
