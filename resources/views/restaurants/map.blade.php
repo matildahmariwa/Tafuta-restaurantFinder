@@ -202,8 +202,8 @@
        //AIzaSyAAwHxhzoVjT3Qp7DBvRh_Y7ga_6Ud11po
 
   </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAwHxhzoVjT3Qp7DBvRh_Y7ga_6Ud11po&callback=initMap">
-    </script>
+  <script async defer
+  src="{{'https://maps.googleapis.com/maps/api/js?key='.env('GOOGLE_API_KEY').'&callback=initMap'}}">
+  </script>
   </body>
 </html>
