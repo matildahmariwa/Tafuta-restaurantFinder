@@ -47,18 +47,21 @@
                     <li class="nav-item active">
                     <a class="nav-link" href="{{route('landing')}}">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    
-                    {{-- <li class="nav-item">
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Log in</a>
+        
+                    </li>
+                    <li class="nav-item">
                     <a class="nav-link" href="{{route('maps')}}">find by location</a>
         
-                    </li> --}}
+                    </li>
                     <li class="nav-item dropdown">
-                      <button class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <li class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Search
                       </a>
-                      </button>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <a href="{{route('maps')}}">Search by nearby</a>
+        
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Search by popularity</a>
                       </div>
@@ -67,22 +70,28 @@
                     <a class="nav-link" href="{{route('home')}}">Dashboard</a>
                     </li>
                   </ul>
-                <form class="form-inline my-2 my-lg-0" method="get" action="{{ route('search')}}">
-                    <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search food here" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                  </form>
+                
                 </div>
               </nav>
-<h1 class="text-center">Restaurants</h1>
-<hr>
+{{-- <h1 class="text-center">Restaurants</h1>
+<hr> --}}
 <div class="container">
 <?php  
  $restaurants=App\Restaurant::all(); 
 ?>
+<?php
+$count = $foodsAll->count();
+?>
+<p>
+<?php
+echo($count)
+?>
+results returned 
+</p>
 @if(count($restaurants)>0)
 <div class="well">
 <div class="row">
-@foreach($restaurants as $restaurant)
+@foreach($foodsAll as $restaurant)
    <div class="col-md-4 col-sm-4"> 
     <div class="col-md-12 col-sm-12">
     <div class="restaurant-img" style="background-image:url('/Tafuta_restaurant/storage/app/public/cover_images/{{$restaurant->cover_image}}')">

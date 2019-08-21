@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Review;
 use App\Restaurant;
-use Illuminate\Support\Facades\Auth;
+use App\Food;
 
-
-class ReviewsController extends Controller
+class SearchController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +15,7 @@ class ReviewsController extends Controller
      */
     public function index()
     {
-        // $reviews=App\Review::all(); 
-        // $restaurant_id=$request->route('restaurant_id');
-        // $restaurant=Restaurant::find($restaurant_id);
-        // return view('restaurants.viewer')->with('reviews',$restaurant->reviews);
-
+        //
     }
 
     /**
@@ -42,17 +36,7 @@ class ReviewsController extends Controller
      */
     public function store(Request $request)
     {
-        if (! Auth::check()) {
-            return redirect('landing');
-        }
-        
-        $review=new Review;
-        $review->user_id=auth()->user()->id;
-        $review->restaurant_id=$request->get('restaurant_id');
-        $review->value=$request->input('value');
-        $review->rating=$request->input('rating'); 
-        $review->save();
-       
+        //
     }
 
     /**
@@ -61,13 +45,9 @@ class ReviewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
     public function show($id)
     {
-  
-    $reviews = Review::find($id); // Find all reviews model by restaurantID
-    return view('restaurants.review'); // This will do $reviews = reviews
-    // now you can foreach over reviews in your blade
+        return view('restaurants.searchInput');
     }
 
     /**
@@ -103,4 +83,20 @@ class ReviewsController extends Controller
     {
         //
     }
+    public function search(Request $request){
+        
+       // Restaurant::whereHas('food', function($q) use($request){
+         //   $q->where('food_item', 'like', '%' . $request->attribute . '%');
+           // }
+            //)->get();
+     Food::query()
+    ->where('food_item', 'LIKE',  '%' . $request->attribute . '%')
+    //->orWhere('email', 'LIKE', "%{$searchTerm}%") 
+    ->get();
+           
+       }
+
+
+
+
 }

@@ -23,7 +23,8 @@
             </head>
             {!!Form::open(['action' => ['ReviewsController@store'],'method'=>'POST','enctype'=>'multipart/form-data'])!!}
             <div class="form-group">   
-            {{Form::textarea('value',null,['id'=>'value','placeholder'=>'Insert here','name'=>'value'])}}
+            <div class="form-group">   
+                {{Form::textarea('value',null,['id'=>'value','placeholder'=>'Insert here','name'=>'value'])}}
             </div>
             {{ Form::hidden('restaurant_id', Request::route('restaurant_id'))}}
             

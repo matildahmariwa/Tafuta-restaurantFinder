@@ -17,7 +17,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-12">
                         @if (session('status'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -41,7 +41,7 @@
                                     <th scope="col">{{ __('WEBSITE') }}</th>
                                     <th scope="col">{{ __('PHONE') }}</th>
                                     <th scope="col">{{ __('PHYSICAL ADDRESS') }}</th>
-                                    
+
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
@@ -64,19 +64,19 @@
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    
+
                                                         <form action="{{ route('restaurants.destroy', $restaurant) }}" method="post">
                                                             @csrf
                                                             @method('delete')
-                                                            
+
                                                             <a class="dropdown-item" href="{{ route('restaurants.edit',$restaurant)}}">{{ __('Edit') }}</a>
                                                             <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this restaurant?") }}') ? this.parentElement.submit() : ''">
                                                                 {{ __('Delete') }}
                                                             </button>
-                                                        </form>    
-                                                  
-                                                        {{-- <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Edit') }}</a> --}}
-                                                   
+                                                        </form>
+
+
+
                                                 </div>
                                             </div>
                                         </td>
@@ -93,7 +93,7 @@
                 </div>
             </div>
         </div>
-            
+
         @include('layouts.footers.auth')
     </div>
 @endsection

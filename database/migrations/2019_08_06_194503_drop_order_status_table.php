@@ -14,6 +14,8 @@ class DropOrderStatusTable extends Migration
     public function up()
     {
         Schema::dropIfExists('order_status');
+        Schema::dropIfExists('cover_image');
+
 
         //Update orders with columns from order_status
         Schema::table('orders', function (Blueprint $table) {
