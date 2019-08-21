@@ -24,27 +24,40 @@ Auth::routes();
 Route::get('/create', function () {
     return view('restaurants.create');
 });
+
 Route::get('/landing', function () {
     return view('restaurants.landing');
-});
+})->name('landing');
 // Route::get('/viewer', function () {
 //     return view('restaurants.viewer');
 // });
 Route::get('/index',function(){
     return view('restaurants.index');
 });
+Route::get('/searchq',function(){
+    return view('restaurants.search');
+});
 Route::get('/restaurants/{restaurant_id}/review', ['as' => 'restaurants.review', 'uses' => 'ReviewsController@show']);
-
+Route::get('/restaurants/{restaurant_id}/food', ['as' => 'restaurants.menu', 'uses' => 'FoodsController@show']);
+Route::get('/restaurants/profile/{restaurant_id}/', 'RestaurantsController@profile');
 Route::resource('restaurants','RestaurantsController');
+Route::resource('menu','FoodsController');
+Route::resource('foodcategory','FoodCategoryController');
 Route::resource('reviews','ReviewsController');
+Route::get('search','FoodsController@search')->name('search');
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/map',function(){
-    return view('map');
+    return view('restaurants.map');
+})->name('maps');
+Route::get('/searchInput',function(){
+    return view('restaurants.searchInput');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/searchq', 'SearchController@search')->name('searchq');
+
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'UserController', ['except' => ['show']]);
@@ -53,3 +66,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
 
+
+//This is the places route 
+Route::get('/map2',function(){
+    return view('restaurants.map2');
+});

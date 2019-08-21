@@ -25,6 +25,11 @@ class CreateNewRestaurantsTable extends Migration
             $table->string('phone')->nullable(true);
             $table->softDeletes();
             $table->timestamps();
+            if($request->hasFile('cover_image')) {
+                $restaurant->cover_image = ImageUploadController::store($request, 'cover_image');
+            }
+            $restaurant->save();
+            return redirect("restaurants/");
         });
     }
 

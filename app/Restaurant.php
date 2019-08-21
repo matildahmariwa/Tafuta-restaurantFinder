@@ -19,6 +19,9 @@ class Restaurant extends Model
    public function reviews(){
       return $this->hasMany('App\Review');
   }
+  public function foods(){
+    return $this->hasMany('App\Food');
+}
   protected $appends = ['rating_count'];
 
 public function getRatingCountAttribute()

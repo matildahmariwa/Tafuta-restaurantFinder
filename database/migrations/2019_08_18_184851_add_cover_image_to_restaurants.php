@@ -14,7 +14,7 @@ class AddCoverImageToRestaurants extends Migration
     public function up()
     {
         Schema::table('restaurants', function (Blueprint $table) {
-            $table->string('cover_image');  
+            $table->binary('cover_image');
         });
     }
 

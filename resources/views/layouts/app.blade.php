@@ -25,7 +25,7 @@
             </form>
             @include('layouts.navbars.sidebar')
         @endauth
-        
+
         <div class="main-content">
             @include('layouts.navbars.navbar')
             @yield('content')
@@ -37,10 +37,11 @@
 
         <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
         <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        
+
         @stack('js')
-        
+
         <!-- Argon JS -->
         <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
+        <script type="text/javascript"  async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFDwP1v9neh0k3aiiZ1yvoAFMIk7Id12c&callback=initMap"></script>
     </body>
 </html>
