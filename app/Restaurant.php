@@ -28,4 +28,5 @@ public function getRatingCountAttribute()
 {
     return $this->reviews->avg('rating');
 }
+
 }

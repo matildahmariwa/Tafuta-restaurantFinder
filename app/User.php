@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','role',
     ];
 
     /**
@@ -40,4 +40,24 @@ class User extends Authenticatable
     public function reviews(){
         return $this->hasMany('App\Review');
     }
+    //check if user is admin
+    public function isSuperAdmin() : bool
+    {
+        return (bool) $this->is_super_admin;
+    }
+    //create admin
+    public function createSuperAdmin(array $details) : self
+    {
+        $user = new self($details);
+        if (! $this->superAdminExists()) {
+            $user->is_super_admin = 1;
+        }
+        $user->save();
+        return $user;
+    }
+    public function superAdminExists() : int
+    {
+        return self::where('is_super_admin', 1)->count();
+    }
+
 }

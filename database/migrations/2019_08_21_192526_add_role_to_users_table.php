@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddRatingCountToRestaurants extends Migration
+class AddRoleToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddRatingCountToRestaurants extends Migration
      */
     public function up()
     {
-        Schema::table('restaurants', function (Blueprint $table) {
-            //
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('role');
         });
     }
 
@@ -25,7 +25,7 @@ class AddRatingCountToRestaurants extends Migration
      */
     public function down()
     {
-        Schema::table('restaurants', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }

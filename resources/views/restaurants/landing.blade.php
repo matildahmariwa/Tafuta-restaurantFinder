@@ -66,6 +66,11 @@
                     <li class="nav-item">
                     <a class="nav-link" href="{{route('home')}}">Dashboard</a>
                     </li>
+                    @if(!Auth::guest())
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{route('login')}}">Login</a>
+                      </li>
+                      @endif
                   </ul>
                 <form class="form-inline my-2 my-lg-0" method="get" action="{{ route('search')}}">
                     <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search food here" aria-label="Search">
@@ -92,7 +97,7 @@
     <div class="col-md-12 col-sm-12">
     <h3><a href="/Tafuta_restaurant/public/restaurants/{{$restaurant->id}}">{{$restaurant->name}}</h3>
     <small>{{$restaurant->days_of_operation}}</small> </br>
-    <small>{{number_format($restaurant->rating_count,2)}}</small>  
+    <small>{{$restaurant->rating_count}}</small>  
     {{-- <small>Written on {{$recipe->created_at }} by {{$recipe->user->name}}</small>  --}}
     </div>
 </div>  

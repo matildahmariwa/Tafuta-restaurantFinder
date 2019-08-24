@@ -51,6 +51,8 @@ class ReviewsController extends Controller
         $review->restaurant_id=$request->get('restaurant_id');
         $review->value=$request->input('value');
         $review->rating=$request->input('rating'); 
+        $avgRating=$review->avg('rating');
+        $review->rating_count=round($avgRating,1);
         $review->save();
        
     }
@@ -102,5 +104,14 @@ class ReviewsController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function MostPopular(){
+        $apps = DB::table('restaurants')
+            ->select('restaurants.*')
+            ->leftJoin('ratings', 'products.id', '=', 'ratings.rateable_id')
+            ->addSelect(DB::raw('AVG(ratings.rating) as average_rating'))
+            ->groupBy('products.id')
+            ->orderBy('average_rating', 'desc')
+            ->paginate(session('posts_per_page'));
     }
 }
