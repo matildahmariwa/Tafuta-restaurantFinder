@@ -30,5 +30,6 @@ class Review extends Model
  public function restaurant(){
     return $this->belongsTo('App\Restaurant');
  }
+ 
 
 }

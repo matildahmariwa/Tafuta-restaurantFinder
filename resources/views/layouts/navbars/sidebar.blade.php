@@ -69,7 +69,7 @@
                         <i class="fa fa-users" style="color: #f4645f;"></i>
                         <span class="nav-link-text" style="color: #f4645f;">{{ __('Users') }}</span>
                     </a>
-
+                    @if (Auth::check() && !Auth::user()->role == 'customer') 
                     <div class="collapse show" id="users-nav">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
@@ -106,6 +106,7 @@
                         </ul>
                     </div>
                 </li>
+                @endif
                 <li class="nav-item">
                     <a class="nav-link" href="{{route("foodcategory.index")}}">
                         <i class="ni ni-bullet-list-67 text-green"></i> {{ __('Food Categories') }}

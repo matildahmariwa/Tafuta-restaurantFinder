@@ -14,8 +14,8 @@
 Route::get('/homescreen', function () {
     return view('homescreen');
 });
-Route::get('/', function () {
-    return view('auth.login');
+Route::get('/login', function () {
+    return view('auth.login')->name('login');
 });
 Auth::routes();
 // Route::get('/search', function () {
@@ -25,7 +25,7 @@ Route::get('/create', function () {
     return view('restaurants.create');
 });
 
-Route::get('/landing', function () {
+Route::get('/', function () {
     return view('restaurants.landing');
 })->name('landing');
 // Route::get('/viewer', function () {
@@ -71,3 +71,15 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/map2',function(){
     return view('restaurants.map2');
 });
+
+Route::get('/admin', function(){
+    echo "Hello Admin";
+})->middleware('admin');
+ 
+Route::get('/vendor', function(){
+    echo "Hello Vendor";
+})->middleware('vendor');
+ 
+Route::get('/customer', function(){
+    echo "Hello Customer";
+})->middleware('customer');

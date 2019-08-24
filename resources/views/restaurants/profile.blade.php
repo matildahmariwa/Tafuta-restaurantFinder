@@ -23,7 +23,9 @@
         <div class="header-body text-center mb-7">
             <div class="row justify-content-center">
                 <div class="col-lg-5 col-md-6">
-                    <h1 class="text-white text-uppercase display-2">{{ $restaurant->name }}</h1>
+                        
+                    <h1 class="text-white text-uppercase display-2">{{$restaurant->name }}</h1> 
+                    
                 </div>
             </div>
         </div>

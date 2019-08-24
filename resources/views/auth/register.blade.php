@@ -29,6 +29,16 @@
                                     </span>
                                 @endif
                             </div>
+                            <div class="form-group row">
+                                <label for="role" class="col-md-4 col-form-label text-md-right">Role</label>
+                             
+                                <div class="form-group">
+                                    <select name="role" class="form-control" >
+                                        <option value="agent">Vendor</option>
+                                        <option value="customer">Customer</option>
+                                    </select> 
+                                </div>
+                            </div>
                             <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                 <div class="input-group input-group-alternative mb-3">
                                     <div class="input-group-prepend">
@@ -42,6 +52,7 @@
                                     </span>
                                 @endif
                             </div>
+                            
                             <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                                 <div class="input-group input-group-alternative">
                                     <div class="input-group-prepend">
