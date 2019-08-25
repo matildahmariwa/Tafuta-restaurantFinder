@@ -6,8 +6,12 @@
         </button>
         <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ route('home') }}">
+          
             <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="...">
         </a>
+        @if (Auth::check() && Auth::user()->role == 'customer') 
+    <a href="{{route('landing')}}">Back to Home</a>
+    @endif
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
             <li class="nav-item dropdown">
@@ -107,11 +111,7 @@
                     </div>
                 </li>
                 @endif
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route("foodcategory.index")}}">
-                        <i class="ni ni-bullet-list-67 text-green"></i> {{ __('Food Categories') }}
-                    </a>
-                </li>
+                
 
                 <li class="nav-item">
                     <a class="nav-link" href="#">

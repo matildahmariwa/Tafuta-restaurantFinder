@@ -34,8 +34,8 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
                          aria-labelledby="tabs-icons-text-1-tab">
-                        {{-- <img src="{{\App\Http\Controllers\ImageUploadController::getFilePath($restaurant->cover_image)}}" alt="No Cover image"/> --}}
-                        <img style="width:100%" src="Tafuta_restaurant\storage\app\public\cover_images/{{$restaurant->cover_image}}"> 
+
+                        <img style="width:100%" src="Tafuta_restaurant/storage/app/public/cover_images/{{$restaurant->cover_image}}"> 
                         <h1 class="display-4">Email</h1>
 
                         <p>{{$restaurant->email}}</p>

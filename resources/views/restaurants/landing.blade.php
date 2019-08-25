@@ -66,11 +66,7 @@
                     <li class="nav-item">
                     <a class="nav-link" href="{{route('home')}}">Dashboard</a>
                     </li>
-                    @if(!Auth::guest())
-                    <li class="nav-item">
-                      <a class="nav-link" href="{{route('login')}}">Login</a>
-                      </li>
-                      @endif
+
                   </ul>
                 <form class="form-inline my-2 my-lg-0" method="get" action="{{ route('search')}}">
                     <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search food here" aria-label="Search">
