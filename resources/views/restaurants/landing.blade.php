@@ -90,7 +90,7 @@
 @foreach($restaurants as $restaurant)
    <div class="col-md-4 col-sm-4"> 
     <div class="col-md-12 col-sm-12">
-    <div class="restaurant-img" style="background-image:url('/Tafuta_restaurant/storage/app/public/cover_images/{{$restaurant->cover_image}}')">
+    <div class="restaurant-img" style="/recipehub/storage/app/public/cover_images/{{$restaurant->cover_image}}">
  
     </div>
     </div>
