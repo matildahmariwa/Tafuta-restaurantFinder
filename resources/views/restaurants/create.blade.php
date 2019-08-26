@@ -3,9 +3,11 @@
 
     <h3 class="text-center"><u>Create Restaurant</u></h3>
     <br><br>
+    @if (Auth::check() && !Auth::user()->role == 'vendor') 
     <div class="col-4 text-left">
         <a href="{{ route('restaurants.index') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
     </div>
+    @endif
     <div class="container">
 
         {!! Form::open(['action' => 'RestaurantsController@store','method'=>'POST','enctype'=>'multipart/form-data'])!!}

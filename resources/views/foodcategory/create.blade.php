@@ -4,9 +4,13 @@
 
     <h3 class="text-center"><u>Add food category</u></h3>
     <br><br>
+    
     <div class="col-4 text-left">
         <a href="{{ route('foodcategory.index') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
     </div>
+   
+
+    @if (Auth::check() && !Auth::user()->role == 'customer') 
     <div class="container">
 
         {!! Form::open(['action' => 'FoodCategoryController@store','method'=>'POST','enctype'=>'multipart/form-data'])!!}

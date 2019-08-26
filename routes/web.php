@@ -22,7 +22,7 @@ Auth::routes();
 //     return view('search');
 // });
 Route::get('/create', function () {
-    return view('restaurants.create');
+    return view('restaurants.create')->name('create');
 });
 
 Route::get('/', function () {
@@ -83,3 +83,16 @@ Route::get('/vendor', function(){
 Route::get('/customer', function(){
     echo "Hello Customer";
 })->middleware('customer');
+// Route::get('/', 'FoodsController@index');
+ 
+Route::get('cart', 'FoodsController@cart');
+ 
+Route::get('add-to-cart/{id}', 'FoodsController@addToCart');
+
+Route::patch('update-cart', 'FoodsController@update');
+Route::delete('remove-from-cart', 'FoodsController@remove');
+Route::get('/cart',function(){
+    return view('restaurants.cart');
+});
+Route::get('/restaurants/{restaurant_id}/cart', ['as' => 'restaurants.cart', 'uses' => 'FoodsController@show']);
+ 
