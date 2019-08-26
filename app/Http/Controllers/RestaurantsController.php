@@ -65,13 +65,13 @@ class RestaurantsController extends Controller
         $restaurant->phone = $request->input('phone');
         $restaurant->lat=$request->input('lat');
         $restaurant->lng=$request->input('lng');
-
+        $restaurant->vendor_id=auth()->user()->id;
         $restaurant->cover_image=$fileNameToStore;
        
 
         $restaurant->save();
 
-        return redirect("restaurants/");
+        return redirect("home/");
 
     }
 

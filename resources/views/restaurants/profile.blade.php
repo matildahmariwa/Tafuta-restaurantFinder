@@ -63,7 +63,47 @@
                     </div>
                     <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                          aria-labelledby="tabs-icons-text-2-tab">   
-                         gsvcxbjhcsasa,bhcscsak,bscahbcsasbcbcscjsscbhshccbs
+                       <h1 class="text-center">Food menu</h1>
+                       <?php
+                       $foods=App\Food::all();
+                       $sortedFoods = array();
+                        $theID = $restaurant->id;
+                   
+                       foreach($foods as $food){
+                           $restaurantID = $food->restaurant_id;
+                         
+                           if($restaurantID==$theID){
+                             array_push($sortedFoods,$food);
+                           }
+                   
+                       }
+                       // @endforeach
+                   
+                       ?>
+                               @foreach($sortedFoods as $food)
+                               <hr>
+                               <div class="row">
+                                    <div class="col-xs-18 col-sm-6 col-md-3">
+                                            <div class="thumbnail">
+                                
+                                                <div class="caption">
+                                                <h4>{{$food->food_item}}</h4>
+                                                    
+                                                    <p><strong>Price:</strong>{{$food->price}}</p>
+                                                    <p class="btn-holder"><a href="{{ route('restaurants.cart',$restaurant->id)}}" class="btn btn-primary btn-block text-center" role="button" > Order this</a> </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                 
+                               </div>
+                             @endforeach
+                             
+                       <div>
+                       </div>
+                   
+    
+    <div>   
+
                         <p class="description"><a href="{{ route('restaurants.menu',$restaurant->id)}}">Add food item </a
                             </p>
                     </div>
