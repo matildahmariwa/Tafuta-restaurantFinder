@@ -1,1 +1,2 @@
 # Tafuta-restaurantFinder
+Features
