@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -58,6 +59,9 @@ class User extends Authenticatable
     public function superAdminExists() : int
     {
         return self::where('is_super_admin', 1)->count();
+    }
+    public function Orders(){
+        return $this->hasMany(Order::class);
     }
 
 }

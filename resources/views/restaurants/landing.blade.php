@@ -1,7 +1,8 @@
 <html>
-      
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+{{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> --}}
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
@@ -86,10 +87,11 @@
 @foreach($restaurants as $restaurant)
    <div class="col-md-4 col-sm-4"> 
     <div class="col-md-12 col-sm-12">
-    <div class="restaurant-img" style="background-image:url('/Tafuta_restaurant/storage/app/public/cover_images/{{$restaurant->cover_image}}')">
- 
+   
+    <div class="restaurant-img" style="background-image:url('/Tafuta_restaurant/storage/app/public/cover_images/{{$restaurant->cover_image}}')"></div>
+    
     </div>
-    </div>
+    {{$restaurant->rating}}
     <div class="col-md-12 col-sm-12">
     <h3><a href="/Tafuta_restaurant/public/restaurants/{{$restaurant->id}}">{{$restaurant->name}}</h3>
     <small>{{$restaurant->days_of_operation}}</small> </br>

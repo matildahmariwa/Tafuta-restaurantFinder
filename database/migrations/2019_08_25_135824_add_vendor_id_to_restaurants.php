@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCoverImageToRestaurants extends Migration
+class AddVendorIdToRestaurants extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddCoverImageToRestaurants extends Migration
     public function up()
     {
         Schema::table('restaurants', function (Blueprint $table) {
-            $table->binary('cover_image');
+            $table->integer('vendor_id');
         });
     }
 

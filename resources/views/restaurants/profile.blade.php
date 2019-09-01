@@ -8,6 +8,13 @@
    color: rgba(112, 111, 111, 0.856);
   
 }
+{
+    width:100%;
+    text-align: center;
+}
+.inner{
+    display: inline-block;
+}
 
 .fa-star:hover {
    color: #e2334c;
@@ -35,7 +42,7 @@
                     <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
                          aria-labelledby="tabs-icons-text-1-tab">
 
-                        <img style="width:100%" src="Tafuta_restaurant/storage/app/public/cover_images/{{$restaurant->cover_image}}"> 
+                        <img style="width:100%" src="/Tafuta_restaurant/storage/app/public/cover_images/{{$restaurant->cover_image}}"> 
                         <h1 class="display-4">Email</h1>
 
                         <p>{{$restaurant->email}}</p>
@@ -63,9 +70,55 @@
                     </div>
                     <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
                          aria-labelledby="tabs-icons-text-2-tab">   
-                         gsvcxbjhcsasa,bhcscsak,bscahbcsasbcbcscjsscbhshccbs
-                        <p class="description"><a href="{{ route('restaurants.menu',$restaurant->id)}}">Add food item </a
-                            </p>
+                       <h1 class="text-center" text-underline>Food menu</h1>
+                       <?php
+                       $foods=App\Food::all();
+                       $sortedFoods = array();
+                        $theID = $restaurant->id;
+                   
+                       foreach($foods as $food){
+                           $restaurantID = $food->restaurant_id;
+                         
+                           if($restaurantID==$theID){
+                             array_push($sortedFoods,$food);
+                           }
+                   
+                       }
+                       // @endforeach
+                   
+                       ?>
+                               @foreach($sortedFoods as $food)
+                               <hr>
+                               <div class="row">
+                                    <div class="col-xs-18 col-sm-6 col-md-3">
+                                            <div class="thumbnail">
+                                
+                                                <div class="caption">
+                                                <h4>{{$food->food_item}}</h4>
+                                                    
+                                                    <p><strong>Price:</strong>{{$food->price}}</p>
+                                                    
+                                                    <p class="btn-holder float-left "><a href="{{route('addCart',$food->id) }}" class="btn btn-primary btn-block text-center" role="button"  > Order this</a> </p>
+                                                    @if (Auth::check() && Auth::user()->role == 'vendor')
+                                                <p class="btn-holder float-right "><a href="{{route('deleteFood',$food->id)}}" class="btn btn-primary btn-block text-center" role="button"> Delete  item</a> </p>
+                                                  @endif 
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                 
+                               </div>
+                             @endforeach
+                             
+                       <div>
+                       </div>
+                   
+    
+    <div>   
+
+                        <p class="description"><a href="{{ route('restaurants.menu',$restaurant->id)}}">Add food item </a></p>
+                            
+                    </div>
                     </div>
                     <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
                          aria-labelledby="tabs-icons-text-3-tab">

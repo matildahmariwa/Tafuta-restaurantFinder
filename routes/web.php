@@ -22,7 +22,7 @@ Auth::routes();
 //     return view('search');
 // });
 Route::get('/create', function () {
-    return view('restaurants.create');
+    return view('restaurants.create')->name('create');
 });
 
 Route::get('/', function () {
@@ -37,15 +37,21 @@ Route::get('/index',function(){
 Route::get('/searchq',function(){
     return view('restaurants.search');
 });
+Route::get('/order',function(){
+    return view('restaurants.orders');
+});
 Route::get('/restaurants/{restaurant_id}/review', ['as' => 'restaurants.review', 'uses' => 'ReviewsController@show']);
 Route::get('/restaurants/{restaurant_id}/food', ['as' => 'restaurants.menu', 'uses' => 'FoodsController@show']);
 Route::get('/restaurants/profile/{restaurant_id}/', 'RestaurantsController@profile');
 Route::resource('restaurants','RestaurantsController');
 Route::resource('menu','FoodsController');
 Route::resource('foodcategory','FoodCategoryController');
+// Route::get('/restaurants/{restaurant_id}/cart', ['as' => 'restaurants.cart', 'uses' => 'FoodsController@ShowCart']);
 Route::resource('reviews','ReviewsController');
+Route::resource('orders','OrdersController');
 Route::get('search','FoodsController@search')->name('search');
 Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::get('/deleteFood/{id}', 'FoodsController@destroy')->name('deleteFood');
 Route::get('/map',function(){
     return view('restaurants.map');
 })->name('maps');
@@ -83,3 +89,18 @@ Route::get('/vendor', function(){
 Route::get('/customer', function(){
     echo "Hello Customer";
 })->middleware('customer');
+// Route::get('/', 'FoodsController@index');
+ 
+Route::get('cart', 'FoodsController@cart')->name('cart');
+ 
+Route::get('/add-to-cart/{id}', 'FoodsController@addToCart')->name('addCart');
+
+Route::post('/order','FoodsController@OrderItem')->name('order');//route for order
+
+Route::patch('update-cart', 'FoodsController@update');
+Route::delete('remove-from-cart/{id}', 'FoodsController@remove')->name('removeCart');
+// Route::get('/cart',function(){
+//     return view('restaurants.cart');
+// });
+Route::get('/restaurants/{restaurant_id}/cart', ['as' => 'restaurants.cart', 'uses' => 'FoodsController@show']);
+ 

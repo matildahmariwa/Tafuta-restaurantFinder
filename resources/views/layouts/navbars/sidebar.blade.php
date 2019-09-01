@@ -86,9 +86,19 @@
                                     {{ __('User Management') }}
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('user.index') }}">
+                                    {{ __('User Management') }}
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item">
+                                <a class="nav-link" href="{{ route('user.index') }}">
+                                    {{ __('User Management') }}
+                                </a>
+                            </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="#restaurants-nav" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="restaurants-nav">
                         <i class="ni ni-shop" style="color: #5E72E4;"></i>
@@ -111,11 +121,28 @@
                     </div>
                 </li>
                 @endif
-                
-
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route("foodcategory.index")}}">
+                        <i class="ni ni-bullet-list-67 text-green"></i> {{ __('Food Categories') }}
+                    </a>
+                </li>
+                @if (Auth::check() && Auth::user()->role == 'vendor')
+                <li class="nav-item">
+                <a class="nav-link" href="{{route("restaurants.create")}}">
+                            <i class="ni ni-money-coins text-blue"></i> {{ __('Add restaurant') }}
+                        </a>
+                    </li>
+                    @endif
+                    @if (Auth::check() && Auth::user()->role == 'vendor')
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <i class="ni ni-cart text-info"></i> {{ __('Orders') }}
+                        <i class="ni ni-cart text-info"></i> {{ __('My restaurants') }}
+                    </a>
+                    @endif
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{route("order")}}">
+                        <i class="ni ni-cart text-info"></i> {{ __('My Orders') }}
                     </a>
                 </li>
                 <li class="nav-item">
@@ -123,6 +150,8 @@
                         <i class="ni ni-money-coins text-blue"></i> {{ __('Payments') }}
                     </a>
                 </li>
+
+                
                 
             </ul>
             <!-- Divider -->

@@ -14,5 +14,10 @@ class Food extends Model
   
   public function restaurant(){
     return $this->belongsTo('App\Restaurant');
+
  }
+ 
+ public function order(){
+  return $this->belongsTo('App\Order');
+}
 }

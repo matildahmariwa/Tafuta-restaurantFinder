@@ -21,12 +21,15 @@ class Restaurant extends Model
   }
   public function foods(){
     return $this->hasMany('App\Food');
-}
+  }
   protected $appends = ['rating_count'];
 
-public function getRatingCountAttribute()
-{
+  public function getRatingCountAttribute()
+  {
     return $this->reviews->avg('rating');
-}
+  }
+  public function orders(){
+    return $this->hasMany(Order::class);
+  }
 
 }
